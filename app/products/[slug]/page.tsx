@@ -151,7 +151,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <div className="shell py-6 sm:py-10">
         <Breadcrumbs items={crumbs} />
 
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="grid min-w-0 gap-10 lg:grid-cols-2 lg:gap-14">
           <ProductGallery images={product.images} name={product.name} />
 
           <div>
@@ -177,7 +177,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        <div className="mt-14 grid min-w-0 gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
           <div>
             <h2 className="mb-4 font-display text-xl font-bold">Product details</h2>
             <Accordion items={detailSections} defaultOpen={0} />
