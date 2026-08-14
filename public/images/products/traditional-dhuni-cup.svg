@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500" role="img" aria-label="Traditional Dhuni Cup">
+<defs>
+<pattern id="bp" width="64" height="64" patternUnits="userSpaceOnUse">
+  <rect width="64" height="64" fill="none"/>
+  <path d="M32 8 L40 24 L32 32 L24 24 Z" fill="#452F1F" opacity="0.09"/>
+  <circle cx="8" cy="48" r="3.5" fill="#452F1F" opacity="0.09"/>
+  <circle cx="56" cy="48" r="3.5" fill="#452F1F" opacity="0.09"/>
+  <path d="M0 40 Q16 32 32 40 T64 40" stroke="#452F1F" stroke-width="1.2" fill="none" opacity="0.09"/>
+</pattern>
+<filter id="gr"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/>
+<feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+<feComposite operator="in" in2="SourceGraphic"/></filter></defs>
+<rect width="400" height="500" fill="#F7F1E6"/>
+<rect width="400" height="500" fill="url(#bp)"/>
+<rect width="400" height="500" filter="url(#gr)" fill="#452F1F"/>
+<rect x="16" y="16" width="368" height="468" rx="10" fill="none" stroke="#452F1F" stroke-opacity="0.14"/>
+
+    <g transform="translate(200 250)">
+      <ellipse cx="0" cy="120" rx="118" ry="18" fill="#452F1F" opacity="0.10"/>
+      <path d="M-92 -60 L92 -60 L64 108 L-64 108 Z" fill="#78593C" opacity="0.2"/>
+      <path d="M-92 -60 L92 -60 L64 108 L-64 108 Z" fill="none" stroke="#452F1F" stroke-width="3" stroke-linejoin="round"/>
+      <ellipse cx="0" cy="-60" rx="92" ry="24" fill="#F7F1E6" stroke="#452F1F" stroke-width="3"/>
+      <ellipse cx="0" cy="-58" rx="62" ry="15" fill="#452F1F" opacity="0.28"/>
+      <path d="M-24 -96 q16 -30 0 -54 M24 -96 q-16 -30 0 -54" stroke="#2F4A3A" stroke-width="2.6" fill="none" opacity="0.6" stroke-linecap="round"/>
+      <path d="M-58 26 L58 26" stroke="#452F1F" stroke-width="1.4" opacity="0.4"/>
+    </g>
+<text x="200" y="452" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#452F1F" opacity="0.62">Traditional Dhuni Cup</text>
+</svg>

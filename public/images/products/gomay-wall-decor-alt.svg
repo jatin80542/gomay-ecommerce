@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500" role="img" aria-label="Gomay Wall Decor — detail">
+<defs>
+<pattern id="bp" width="64" height="64" patternUnits="userSpaceOnUse">
+  <rect width="64" height="64" fill="none"/>
+  <path d="M32 8 L40 24 L32 32 L24 24 Z" fill="#452F1F" opacity="0.09"/>
+  <circle cx="8" cy="48" r="3.5" fill="#452F1F" opacity="0.09"/>
+  <circle cx="56" cy="48" r="3.5" fill="#452F1F" opacity="0.09"/>
+  <path d="M0 40 Q16 32 32 40 T64 40" stroke="#452F1F" stroke-width="1.2" fill="none" opacity="0.09"/>
+</pattern>
+<filter id="gr"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/>
+<feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+<feComposite operator="in" in2="SourceGraphic"/></filter></defs>
+<rect width="400" height="500" fill="#E4D7C0"/>
+<rect width="400" height="500" fill="url(#bp)"/>
+<rect width="400" height="500" filter="url(#gr)" fill="#452F1F"/>
+<rect x="16" y="16" width="368" height="468" rx="10" fill="none" stroke="#452F1F" stroke-opacity="0.14"/>
+
+    <g transform="translate(200 258)">
+      <ellipse cx="0" cy="124" rx="112" ry="18" fill="#452F1F" opacity="0.10"/>
+      <path d="M-86 118 q0 -110 86 -110 q86 0 86 110Z" fill="#78593C" opacity="0.2"/>
+      <path d="M-86 118 q0 -110 86 -110 q86 0 86 110Z" fill="none" stroke="#452F1F" stroke-width="3"/>
+      <circle cx="0" cy="-14" r="46" fill="#F7F1E6" stroke="#452F1F" stroke-width="3"/>
+      <path d="M0 -2 q-8 34 -30 30" stroke="#452F1F" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="-72" r="16" fill="none" stroke="#C98A2E" stroke-width="3"/>
+      <path d="M-58 -48 q58 -44 116 0" fill="none" stroke="#A98442" stroke-width="2.6" opacity="0.8"/>
+    </g>
+<text x="200" y="452" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#452F1F" opacity="0.62">Gomay Wall Decor — detail</text>
+</svg>

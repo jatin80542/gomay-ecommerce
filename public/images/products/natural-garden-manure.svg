@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500" role="img" aria-label="Garden Manure">
+<defs>
+<pattern id="bp" width="64" height="64" patternUnits="userSpaceOnUse">
+  <rect width="64" height="64" fill="none"/>
+  <path d="M32 8 L40 24 L32 32 L24 24 Z" fill="#452F1F" opacity="0.09"/>
+  <circle cx="8" cy="48" r="3.5" fill="#452F1F" opacity="0.09"/>
+  <circle cx="56" cy="48" r="3.5" fill="#452F1F" opacity="0.09"/>
+  <path d="M0 40 Q16 32 32 40 T64 40" stroke="#452F1F" stroke-width="1.2" fill="none" opacity="0.09"/>
+</pattern>
+<filter id="gr"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/>
+<feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+<feComposite operator="in" in2="SourceGraphic"/></filter></defs>
+<rect width="400" height="500" fill="#F7F1E6"/>
+<rect width="400" height="500" fill="url(#bp)"/>
+<rect width="400" height="500" filter="url(#gr)" fill="#452F1F"/>
+<rect x="16" y="16" width="368" height="468" rx="10" fill="none" stroke="#452F1F" stroke-opacity="0.14"/>
+
+    <g transform="translate(200 254)">
+      <ellipse cx="0" cy="132" rx="122" ry="18" fill="#452F1F" opacity="0.10"/>
+      <path d="M-96 -54 q96 -34 192 0 l14 176 q-110 26 -220 0Z" fill="#2F4A3A" opacity="0.16"/>
+      <path d="M-96 -54 q96 -34 192 0 l14 176 q-110 26 -220 0Z" fill="none" stroke="#452F1F" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M-70 -62 q70 -46 140 0" fill="none" stroke="#452F1F" stroke-width="3"/>
+      <rect x="-56" y="16" width="112" height="72" rx="6" fill="#F7F1E6" stroke="#452F1F" stroke-width="2.4"/>
+      <path d="M0 34 q-16 18 0 34 q16 -16 0 -34Z" fill="#2F4A3A" opacity="0.7"/>
+      <path d="M-30 74 L30 74" stroke="#452F1F" stroke-width="2" opacity="0.5"/>
+    </g>
+<text x="200" y="452" text-anchor="middle" font-family="Georgia, serif" font-size="17" fill="#452F1F" opacity="0.62">Garden Manure</text>
+</svg>

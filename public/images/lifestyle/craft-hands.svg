@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Handcrafted">
+<defs>
+<pattern id="bp2" width="64" height="64" patternUnits="userSpaceOnUse">
+  <rect width="64" height="64" fill="none"/>
+  <path d="M32 8 L40 24 L32 32 L24 24 Z" fill="#452F1F" opacity="0.08"/>
+  <circle cx="8" cy="48" r="3.5" fill="#452F1F" opacity="0.08"/>
+  <circle cx="56" cy="48" r="3.5" fill="#452F1F" opacity="0.08"/>
+  <path d="M0 40 Q16 32 32 40 T64 40" stroke="#452F1F" stroke-width="1.2" fill="none" opacity="0.08"/>
+</pattern>
+<filter id="gr2"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/>
+<feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+<feComposite operator="in" in2="SourceGraphic"/></filter>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F7F1E6"/><stop offset="1" stop-color="#EFE6D5"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<rect width="1600" height="900" fill="url(#bp2)"/>
+<circle cx="1248" cy="216" r="144" fill="#C98A2E" opacity="0.18"/>
+<path d="M0 648 q400 -126.00000000000001 800 0 q400 108 800 -0.5 L1600 900 L0 900 Z" fill="#2F4A3A" opacity="0.16"/>
+<path d="M0 756 q480 -90 960 0 q320 72 640 0 L1600 900 L0 900 Z" fill="#B4552D" opacity="0.18"/>
+<g transform="translate(160 558) scale(1.4516129032258065)">
+<g opacity="0.10" transform="translate(300 372) scale(1.05)">
+  <path d="M-118 0 q-14 -40 10 -58 q-6 -22 12 -26 q10 16 24 12 q40 -12 82 0 q34 8 40 40 l14 8 q10 6 4 16 l-16 4 l-6 40 l-14 0 l-4 -30 q-40 12 -80 0 l-6 30 l-14 0 Z"
+    fill="none" stroke="#452F1F" stroke-width="3"/>
+  <circle cx="-84" cy="-58" r="3" fill="#452F1F"/>
+</g></g>
+<rect width="1600" height="900" filter="url(#gr2)" fill="#452F1F"/>
+<text x="800" y="846" text-anchor="middle" font-family="Georgia, serif" font-size="29" fill="#452F1F" opacity="0.5">Handcrafted — village craftsmanship</text>
+</svg>
