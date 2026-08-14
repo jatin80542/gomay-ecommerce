@@ -89,10 +89,11 @@ export default function BulkPage() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-sand-50/15">
             <Image
-              src="/images/lifestyle/bulk-warehouse.svg"
+              src="/images/gomay/lifestyle/warehouse-alt.jpg"
               alt="Cartons of gomay products staged for despatch"
               fill
               sizes="(max-width: 1024px) 100vw, 520px"
+              quality={90}
               priority
               className="object-cover"
             />

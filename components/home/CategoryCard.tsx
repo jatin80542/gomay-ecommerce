@@ -6,13 +6,14 @@ export function CategoryCard({ category }: { category: Category }) {
   return (
     <Link
       href={`/shop?category=${category.slug}`}
-      className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-lg border border-mitti-200 bg-sand-100 p-4 sm:aspect-[3/4]"
+      className="group relative flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-lg border border-mitti-200 bg-sand-100 p-4 "
     >
       <Image
         src={category.image}
         alt=""
         fill
         sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 220px"
+        quality={90}
         className="object-cover transition-transform duration-700 group-hover:scale-105"
       />
       <span className="absolute inset-0 bg-gradient-to-t from-mitti-900/75 via-mitti-900/10 to-transparent" aria-hidden />

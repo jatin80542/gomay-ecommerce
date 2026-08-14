@@ -36,10 +36,11 @@ export default function AboutPage() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mitti-200">
             <Image
-              src="/images/lifestyle/story.svg"
+              src="/images/gomay/story/story.jpg"
               alt="Gomay products drying in the sun at a village yard"
               fill
               sizes="(max-width: 1024px) 100vw, 480px"
+              quality={90}
               priority
               className="object-cover"
             />
@@ -89,10 +90,11 @@ export default function AboutPage() {
         <div className="shell grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mitti-200">
             <Image
-              src="/images/lifestyle/gaushala.svg"
+              src="/images/gomay/story/gaushala.jpg"
               alt="Cattle shed at dawn"
               fill
               sizes="(max-width: 1024px) 100vw, 460px"
+              quality={90}
               className="object-cover"
             />
           </div>

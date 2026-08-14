@@ -21,6 +21,7 @@ export function BulkProductCard({
           alt={product.images[0]?.alt ?? product.name}
           fill
           sizes="(max-width: 640px) 100vw, 176px"
+          quality={90}
           className="object-cover"
         />
       </div>

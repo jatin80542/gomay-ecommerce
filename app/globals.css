@@ -58,13 +58,15 @@
     background-image: url("/images/patterns/block-print.svg");
     background-size: 56px 56px;
     background-repeat: repeat-x;
-    opacity: 0.5;
+    /* The motif already carries its own opacity; 0.5 on top made it a solid band. */
+    opacity: 1;
   }
 
   .paper {
     background-color: theme("colors.sand.100");
     background-image: url("/images/patterns/block-print.svg");
-    background-size: 180px 180px;
+    /* 64px matches the SVG tile; anything larger magnifies the motif into blobs. */
+    background-size: 64px 64px;
   }
 
   .skeleton {

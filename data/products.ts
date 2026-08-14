@@ -7,13 +7,37 @@ import type { BulkPriceTier, Product, ProductImage, Specification, Variant } fro
  * any component changing — the shape below is the contract.
  * ------------------------------------------------------------------ */
 
-const img = (slug: string, name: string): ProductImage[] => [
-  { src: `/images/products/${slug}.svg`, alt: `${name} — product photograph`, kind: "product" },
-  { src: `/images/products/${slug}-alt.svg`, alt: `${name} — close-up detail`, kind: "product" },
-  { src: `/images/products/${slug}-pack.svg`, alt: `${name} — retail packaging`, kind: "packaging" },
-  { src: `/images/lifestyle/craft-hands.svg`, alt: `${name} in use`, kind: "lifestyle" },
-];
+/**
+ * Product photography, keyed by category. The pack shipped one usable frame per
+ * subject rather than per SKU, so products in a range share a photo set. Swap the
+ * paths here first when per-SKU photography arrives — nothing else needs to change.
+ */
+const photoSets: Record<string, [string, string, string]> = {
+  "cow-dung-cakes": ["products/cake-stack.jpg", "products/cake-detail.jpg", "products/packaging.jpg"],
+  "havan-cups": ["products/havan-cup.jpg", "products/havan-cup-white.jpg", "products/havan-use.jpg"],
+  diyas: ["products/diya-lit.jpg", "products/diya-decorated.jpg", "products/diya-group.jpg"],
+  dhoop: ["products/dhoop.jpg", "products/puja-use.jpg", "products/packaging.jpg"],
+  "havan-sticks": ["products/lakdi.jpg", "products/havan-use.jpg", "products/packaging.jpg"],
+  manure: ["products/manure.jpg", "products/manure-use.jpg", "products/packaging.jpg"],
+  festive: ["products/diya-decorated.jpg", "products/diya-lit.jpg", "products/giftbox-festive.jpg"],
+  "combo-boxes": ["products/giftbox-open.jpg", "products/giftbox-white.jpg", "products/packaging.jpg"],
+};
 
+const seenInCategory: Record<string, number> = {};
+
+const img = (category: string, name: string): ProductImage[] => {
+  const set = photoSets[category] ?? photoSets["cow-dung-cakes"]!;
+  // Photography is per category, not per SKU. Rotating the starting frame per product
+  // stops a category grid from rendering four identical cards side by side.
+  const n = (seenInCategory[category] = (seenInCategory[category] ?? 0) + 1) - 1;
+  const order = [0, 1, 2].map((i) => set[(i + n) % set.length]!);
+  return [
+    { src: `/images/gomay/${order[0]}`, alt: `${name} — product photograph`, kind: "product" },
+    { src: `/images/gomay/${order[1]}`, alt: `${name} — closer detail`, kind: "product" },
+    { src: `/images/gomay/${order[2]}`, alt: `${name} — packed for despatch`, kind: "packaging" },
+    { src: `/images/gomay/lifestyle/home-puja.jpg`, alt: `${name} in use`, kind: "lifestyle" },
+  ];
+};
 type PackRow = [count: number, price: number, compareAt?: number, extra?: Partial<Variant>];
 const packs = (sku: string, rows: PackRow[]): Variant[] =>
   rows.map(([count, price, compareAt, extra]) => ({
@@ -166,7 +190,7 @@ export const products: Product[] = [
     subcategory: "Upla",
     collections: ["pooja-havan", "bestsellers"],
     purposes: ["pooja", "havan", "daily-rituals"],
-    images: img("gomay-upla-regular", "Gomay Upla Regular"),
+    images: img("cow-dung-cakes", "Gomay Upla Regular"),
     variants: [
       ...packs("UPL", [
         [6, 99, 129],
@@ -237,7 +261,7 @@ export const products: Product[] = [
     subcategory: "Premium",
     collections: ["pooja-havan"],
     purposes: ["havan", "pooja"],
-    images: img("premium-havan-cow-dung-cakes", "Premium Havan Cow Dung Cakes"),
+    images: img("cow-dung-cakes", "Premium Havan Cow Dung Cakes"),
     variants: packs("PHC", [
       [12, 249, 299],
       [21, 399, 479],
@@ -290,7 +314,7 @@ export const products: Product[] = [
     subcategory: "Kanda",
     collections: ["pooja-havan"],
     purposes: ["pooja", "daily-rituals", "havan"],
-    images: img("traditional-round-gomay-kanda", "Traditional Round Gomay Kanda"),
+    images: img("cow-dung-cakes", "Traditional Round Gomay Kanda"),
     variants: packs("KND", [
       [6, 89, 109],
       [12, 165, 199],
@@ -331,7 +355,7 @@ export const products: Product[] = [
     subcategory: "Small",
     collections: ["pooja-havan", "bestsellers"],
     purposes: ["pooja", "daily-rituals"],
-    images: img("small-pooja-cow-dung-cakes", "Small Pooja Cow Dung Cakes"),
+    images: img("cow-dung-cakes", "Small Pooja Cow Dung Cakes"),
     variants: packs("SPC", [
       [12, 129, 159],
       [21, 199, 249],
@@ -371,7 +395,7 @@ export const products: Product[] = [
     subcategory: "Seasonal",
     collections: ["pooja-havan", "festive"],
     purposes: ["pooja", "bulk-supply"],
-    images: img("holika-dahan-cake-pack", "Holika Dahan Cake Pack"),
+    images: img("cow-dung-cakes", "Holika Dahan Cake Pack"),
     variants: packs("HDC", [
       [50, 749, 899],
       [100, 1399, 1699],
@@ -415,7 +439,7 @@ export const products: Product[] = [
     subcategory: "Wholesale",
     collections: ["pooja-havan"],
     purposes: ["bulk-supply", "havan"],
-    images: img("bulk-gomay-upla-carton", "Bulk Gomay Upla Carton"),
+    images: img("cow-dung-cakes", "Bulk Gomay Upla Carton"),
     variants: packs("BUC", [
       [500, 4499, undefined, { moq: 500 }],
       [1000, 8499, undefined, { moq: 1000 }],
@@ -467,7 +491,7 @@ export const products: Product[] = [
     subcategory: "Classic",
     collections: ["diwali", "bestsellers", "festive"],
     purposes: ["diwali", "daily-rituals", "pooja"],
-    images: img("classic-gomay-diya", "Classic Gomay Diya"),
+    images: img("diyas", "Classic Gomay Diya"),
     variants: [
       ...packs("CGD", [
         [4, 99, 129],
@@ -530,7 +554,7 @@ export const products: Product[] = [
     subcategory: "Designer",
     collections: ["diwali", "festive", "corporate-gifting"],
     purposes: ["diwali", "griha-pravesh", "corporate-gifting"],
-    images: img("designer-gomay-diya", "Designer Gomay Diya"),
+    images: img("diyas", "Designer Gomay Diya"),
     variants: [
       ...packs("DGD", [
         [4, 179, 229],
@@ -581,7 +605,7 @@ export const products: Product[] = [
     subcategory: "Designer",
     collections: ["diwali", "festive"],
     purposes: ["diwali", "griha-pravesh"],
-    images: img("floral-gomay-diya", "Floral Gomay Diya"),
+    images: img("diyas", "Floral Gomay Diya"),
     variants: packs("FGD", [
       [6, 229, 279],
       [12, 429, 519],
@@ -623,7 +647,7 @@ export const products: Product[] = [
     subcategory: "Classic",
     collections: ["pooja-havan", "festive"],
     purposes: ["pooja", "daily-rituals"],
-    images: img("traditional-deepak", "Traditional Deepak"),
+    images: img("diyas", "Traditional Deepak"),
     variants: packs("TDP", [
       [4, 149, 189],
       [6, 209, 259],
@@ -662,7 +686,7 @@ export const products: Product[] = [
     subcategory: "Festive",
     collections: ["diwali", "festive", "bestsellers"],
     purposes: ["diwali", "griha-pravesh"],
-    images: img("festive-diya-pack", "Festive Diya Pack"),
+    images: img("diyas", "Festive Diya Pack"),
     variants: packs("FDP", [
       [12, 349, 449],
       [20, 549, 699],
@@ -705,7 +729,7 @@ export const products: Product[] = [
     subcategory: "Gift",
     collections: ["diwali", "corporate-gifting", "festive"],
     purposes: ["corporate-gifting", "diwali"],
-    images: img("premium-gift-diya-set", "Premium Gift Diya Set"),
+    images: img("diyas", "Premium Gift Diya Set"),
     variants: packs("PGD", [
       [12, 899, 1099],
       [20, 1449, 1749],
@@ -749,7 +773,7 @@ export const products: Product[] = [
     subcategory: "Empty",
     collections: ["pooja-havan", "bestsellers"],
     purposes: ["havan", "pooja", "daily-rituals"],
-    images: img("empty-havan-cups", "Empty Cow Dung Havan Cups"),
+    images: img("havan-cups", "Empty Cow Dung Havan Cups"),
     variants: packs("EHC", [
       [6, 119, 149],
       [12, 209, 259],
@@ -802,7 +826,7 @@ export const products: Product[] = [
     subcategory: "Filled",
     collections: ["pooja-havan"],
     purposes: ["havan", "daily-rituals"],
-    images: img("guggal-havan-cups", "Guggal Havan Cups"),
+    images: img("havan-cups", "Guggal Havan Cups"),
     variants: [
       ...packs("GHC", [
         [6, 169, 209],
@@ -850,7 +874,7 @@ export const products: Product[] = [
     subcategory: "Filled",
     collections: ["pooja-havan", "bestsellers"],
     purposes: ["daily-rituals", "pooja"],
-    images: img("sambrani-cups", "Sambrani Cups"),
+    images: img("havan-cups", "Sambrani Cups"),
     variants: packs("SBC", [
       [6, 149, 189],
       [12, 269, 329],
@@ -890,7 +914,7 @@ export const products: Product[] = [
     subcategory: "Filled",
     collections: ["pooja-havan"],
     purposes: ["havan", "daily-rituals"],
-    images: img("herbal-havan-cups", "Herbal Havan Cups"),
+    images: img("havan-cups", "Herbal Havan Cups"),
     variants: [
       ...packs("HHC", [
         [12, 329, 399],
@@ -932,7 +956,7 @@ export const products: Product[] = [
     subcategory: "Empty",
     collections: ["pooja-havan"],
     purposes: ["havan", "pooja"],
-    images: img("traditional-dhuni-cup", "Traditional Dhuni Cup"),
+    images: img("havan-cups", "Traditional Dhuni Cup"),
     variants: packs("TDC", [
       [12, 249, 299],
       [21, 399, 479],
@@ -977,7 +1001,7 @@ export const products: Product[] = [
     subcategory: "Sticks",
     collections: ["pooja-havan", "bestsellers"],
     purposes: ["daily-rituals", "pooja"],
-    images: img("traditional-cow-dung-dhoop", "Traditional Cow Dung Dhoop"),
+    images: img("dhoop", "Traditional Cow Dung Dhoop"),
     variants: [
       ...packs("TCD", [
         [12, 99, 129],
@@ -1018,7 +1042,7 @@ export const products: Product[] = [
     subcategory: "Sticks",
     collections: ["pooja-havan"],
     purposes: ["daily-rituals", "havan"],
-    images: img("guggal-dhoop-sticks", "Guggal Dhoop Sticks"),
+    images: img("dhoop", "Guggal Dhoop Sticks"),
     variants: [
       ...packs("GDS", [
         [12, 129, 159],
@@ -1059,7 +1083,7 @@ export const products: Product[] = [
     subcategory: "Batti",
     collections: ["pooja-havan"],
     purposes: ["daily-rituals", "pooja"],
-    images: img("chandan-dhoop-batti", "Chandan Dhoop Batti"),
+    images: img("dhoop", "Chandan Dhoop Batti"),
     variants: packs("CDB", [
       [12, 149, 189],
       [21, 239, 289],
@@ -1097,7 +1121,7 @@ export const products: Product[] = [
     subcategory: "Cones",
     collections: ["pooja-havan"],
     purposes: ["daily-rituals"],
-    images: img("gomay-dhoop-cones", "Gomay Dhoop Cones"),
+    images: img("dhoop", "Gomay Dhoop Cones"),
     variants: [
       ...packs("GDC", [
         [12, 139, 169],
@@ -1138,7 +1162,7 @@ export const products: Product[] = [
     subcategory: "Loose",
     collections: ["pooja-havan"],
     purposes: ["havan"],
-    images: img("havan-dhoop-mix", "Havan Dhoop"),
+    images: img("dhoop", "Havan Dhoop"),
     variants: weights("HDM", [
       ["100 g", 149, 179],
       ["250 g", 299, 359],
@@ -1179,7 +1203,7 @@ export const products: Product[] = [
     subcategory: "Sticks",
     collections: ["pooja-havan"],
     purposes: ["havan", "bulk-supply"],
-    images: img("havan-lakdi-sticks", "Havan Lakdi"),
+    images: img("havan-sticks", "Havan Lakdi"),
     variants: [
       ...packs("HLS", [
         [10, 199, 249],
@@ -1235,7 +1259,7 @@ export const products: Product[] = [
     subcategory: "Logs",
     collections: ["pooja-havan"],
     purposes: ["havan", "bulk-supply"],
-    images: img("gomay-logs", "Gomay Logs"),
+    images: img("havan-sticks", "Gomay Logs"),
     variants: weights("GLG", [
       ["5 KG", 999, 1199],
       ["10 KG", 1849, 2149],
@@ -1284,7 +1308,7 @@ export const products: Product[] = [
     subcategory: "Mixed",
     collections: ["pooja-havan"],
     purposes: ["havan"],
-    images: img("ceremonial-havan-fuel-pack", "Ceremonial Havan Fuel Pack"),
+    images: img("havan-sticks", "Ceremonial Havan Fuel Pack"),
     variants: weights("CFP", [
       ["10 KG", 1749, 1999],
       ["25 KG", 3999, 4599],
@@ -1324,7 +1348,7 @@ export const products: Product[] = [
     subcategory: "Powder",
     collections: ["gardening", "bestsellers"],
     purposes: ["gardening", "farming"],
-    images: img("organic-cow-dung-powder", "Dried Cow Dung Powder"),
+    images: img("manure", "Dried Cow Dung Powder"),
     variants: weights("OCP", [
       ["1 KG", 149, 199],
       ["2 KG", 269, 349],
@@ -1377,7 +1401,7 @@ export const products: Product[] = [
     subcategory: "Cured",
     collections: ["gardening"],
     purposes: ["gardening"],
-    images: img("natural-garden-manure", "Natural Garden Manure"),
+    images: img("manure", "Natural Garden Manure"),
     variants: weights("NGM", [
       ["1 KG", 129, 169],
       ["2 KG", 239, 299],
@@ -1416,7 +1440,7 @@ export const products: Product[] = [
     subcategory: "Commercial",
     collections: ["gardening"],
     purposes: ["gardening", "farming", "bulk-supply"],
-    images: img("nursery-grade-manure", "Nursery Grade Manure"),
+    images: img("manure", "Nursery Grade Manure"),
     variants: weights("NRM", [
       ["25 KG", 1899, 2199],
       ["50 KG", 3499, 3999],
@@ -1466,7 +1490,7 @@ export const products: Product[] = [
     subcategory: "Commercial",
     collections: ["gardening"],
     purposes: ["farming", "bulk-supply"],
-    images: img("farm-bulk-manure", "Farm Bulk Manure"),
+    images: img("manure", "Farm Bulk Manure"),
     variants: weights("FBM", [
       ["500 KG", 0, undefined, { quoteOnly: true }],
       ["1 Tonne", 0, undefined, { quoteOnly: true }],
@@ -1516,7 +1540,7 @@ export const products: Product[] = [
     subcategory: "Idols",
     collections: ["festive", "diwali"],
     purposes: ["pooja", "griha-pravesh"],
-    images: img("gomay-ganesh-idol", "Gomay Ganesh"),
+    images: img("festive", "Gomay Ganesh"),
     variants: [
       ...axis("GGI", "size", [["Small — 4 in", 0], ["Medium — 6 in", 0], ["Large — 9 in", 0]]),
       ...packs("GGI", [
@@ -1559,7 +1583,7 @@ export const products: Product[] = [
     subcategory: "Idols",
     collections: ["diwali", "festive", "corporate-gifting"],
     purposes: ["diwali", "griha-pravesh", "corporate-gifting"],
-    images: img("ganesh-lakshmi-set", "Ganesh Lakshmi Set"),
+    images: img("festive", "Ganesh Lakshmi Set"),
     variants: packs("GLS", [
       [1, 749, 899],
       [6, 4199, 4799],
@@ -1600,7 +1624,7 @@ export const products: Product[] = [
     subcategory: "Decor",
     collections: ["festive"],
     purposes: ["griha-pravesh", "diwali"],
-    images: img("gomay-wall-decor", "Gomay Wall Decor Panel"),
+    images: img("festive", "Gomay Wall Decor Panel"),
     variants: [
       ...axis("GWD", "design", [["Block print", 0], ["Lotus", 0], ["Toran", 40]]),
       ...packs("GWD", [
@@ -1645,7 +1669,7 @@ export const products: Product[] = [
     subcategory: "Household",
     collections: ["pooja-havan", "bestsellers"],
     purposes: ["daily-rituals", "pooja"],
-    images: img("daily-puja-box", "Daily Puja Box"),
+    images: img("combo-boxes", "Daily Puja Box"),
     variants: packs("DPB", [
       [1, 749, 949],
       [3, 2099, 2599],
@@ -1685,7 +1709,7 @@ export const products: Product[] = [
     subcategory: "Household",
     collections: ["pooja-havan"],
     purposes: ["havan", "griha-pravesh"],
-    images: img("complete-havan-box", "Complete Havan Box"),
+    images: img("combo-boxes", "Complete Havan Box"),
     variants: packs("CHB", [
       [1, 1299, 1599],
       [3, 3699, 4399],
@@ -1726,7 +1750,7 @@ export const products: Product[] = [
     subcategory: "Household",
     collections: ["pooja-havan", "bestsellers"],
     purposes: ["daily-rituals", "pooja"],
-    images: img("gomay-essentials-box", "Gomay Essentials Box"),
+    images: img("combo-boxes", "Gomay Essentials Box"),
     variants: packs("GEB", [
       [1, 599, 749],
       [3, 1699, 2099],
@@ -1764,7 +1788,7 @@ export const products: Product[] = [
     subcategory: "Festive",
     collections: ["diwali", "festive", "corporate-gifting"],
     purposes: ["diwali", "corporate-gifting"],
-    images: img("festive-diwali-box", "Festive Diwali Box"),
+    images: img("combo-boxes", "Festive Diwali Box"),
     variants: packs("FDB", [
       [1, 1099, 1349],
       [3, 3099, 3699],
@@ -1805,7 +1829,7 @@ export const products: Product[] = [
     subcategory: "Occasion",
     collections: ["festive", "corporate-gifting"],
     purposes: ["griha-pravesh", "havan"],
-    images: img("griha-pravesh-box", "Griha Pravesh Box"),
+    images: img("combo-boxes", "Griha Pravesh Box"),
     variants: packs("GPB", [
       [1, 1499, 1799],
       [3, 4299, 4999],
@@ -1845,7 +1869,7 @@ export const products: Product[] = [
     subcategory: "Institutional",
     collections: ["pooja-havan"],
     purposes: ["bulk-supply", "havan"],
-    images: img("temple-supply-pack", "Temple Supply Pack"),
+    images: img("combo-boxes", "Temple Supply Pack"),
     variants: packs("TSP", [
       [1, 7499, 8999, { moq: 1 }],
       [3, 21499, undefined],
@@ -1895,7 +1919,7 @@ export const products: Product[] = [
     subcategory: "Corporate",
     collections: ["corporate-gifting", "diwali"],
     purposes: ["corporate-gifting"],
-    images: img("corporate-heritage-box", "Corporate Heritage Box"),
+    images: img("combo-boxes", "Corporate Heritage Box"),
     variants: [
       ...axis("CHX", "design", [["Kraft sleeve", 0], ["Block-print sleeve", 60], ["Rigid magnetic box", 180]]),
       ...packs("CHX", [
@@ -1948,7 +1972,7 @@ export const products: Product[] = [
     subcategory: "Corporate",
     collections: ["corporate-gifting", "diwali", "festive"],
     purposes: ["corporate-gifting", "diwali"],
-    images: img("premium-swadeshi-gift-box", "Premium Swadeshi Gift Box"),
+    images: img("combo-boxes", "Premium Swadeshi Gift Box"),
     variants: [
       ...axis("PSB", "design", [["Block-print sleeve", 0], ["Foil-free brass emboss", 120]]),
       ...packs("PSB", [

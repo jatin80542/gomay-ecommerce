@@ -1,7 +1,7 @@
 export function ProductCardSkeleton() {
   return (
     <div className="rounded-lg border border-mitti-200 bg-sand-50 p-3">
-      <div className="skeleton aspect-[4/5] w-full rounded" />
+      <div className="skeleton aspect-[4/3] w-full rounded" />
       <div className="mt-4 space-y-2">
         <div className="skeleton h-3 w-20" />
         <div className="skeleton h-4 w-3/4" />

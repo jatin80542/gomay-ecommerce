@@ -191,28 +191,40 @@ QA harness; keep it passing.
 
 ## Imagery
 
-All 120+ images are **locally generated SVG placeholder art** (`scripts/generate-placeholder-art.mjs`).
-Nothing loads from a remote host, so nothing 404s and the build has no external
-dependency.
+Photography lives under `public/images/gomay/` in four groups:
 
-Real photography drops into the **same paths at the same aspect ratios**:
-
-| Path | Ratio | Use |
+| Folder | Ratio | Used by |
 | --- | --- | --- |
-| `public/images/products/<slug>.svg` | 4:5 | Primary product shot |
-| `public/images/products/<slug>-alt.svg` | 4:5 | Detail / close-up |
-| `public/images/products/<slug>-pack.svg` | 4:5 | Packaging shot |
-| `public/images/lifestyle/*.svg` | 16:9 | Scene photography |
-| `public/images/categories/*.svg` | 3:4 | Category tiles |
+| `banners/` | 4:5 portrait | Homepage hero column |
+| `story/` | 2:1 | Gaushala, drying, craft, packaging, sourcing bands |
+| `lifestyle/` | 2:1 | Home puja, havan, garden, corporate, warehouse |
+| `category/` | 4:3 | Category tiles and collection headers |
+| `products/` | 4:3 | Product cards, galleries, quick view |
 
-Replace the files (switching the extension to `.jpg`/`.webp` and updating
-`data/products.ts`) and no layout shifts.
+**Sourcing.** These are commissioned concept photographs, shot to a single visual
+brief so the catalogue reads as one shoot: warm natural daylight, earthy palette,
+plain cream studio background for every product frame. All files are delivered at
+full working resolution (2000x1000 scenes, 1600x1200 cards, 1600x2000 hero), so
+nothing is upscaled and nothing is soft.
 
-**Note on social cards:** `app/opengraph-image.tsx` generates a real 1200×630 PNG.
-Social platforms do not render SVG previews, so `lib/seo.ts` deliberately ignores any
-`.svg` passed as an OG image. Once you have real photography, pass JPG/PNG paths.
+**Photography is per category, not per SKU.** All products in a range share a photo
+set (see `photoSets` in `data/products.ts`) — every diya SKU shows the same three
+frames. That is the one place to change when per-product photography exists.
 
----
+**Image quality.** `next/image` is pinned to `quality={90}` with `qualities: [75, 90]`
+declared in `next.config.ts`. The Next default of 75 visibly softens this kind of
+warm, low-contrast photography — don't drop it back without looking at a product
+page first.
+
+**Layout ratios follow the photography, not the reverse.** The source material is
+landscape, so product cards, the gallery and category tiles are 4:3 rather than the
+portrait crops used earlier. If you reshoot in portrait, change `aspect-[4/3]` in
+`ProductCard`, `QuickView`, `ProductGallery`, `Skeletons` and `CategoryCard` together
+so the grid stays even.
+
+**Social cards:** `app/opengraph-image.tsx` generates a real 1200x630 PNG. Social
+platforms don't render SVG previews, so `lib/seo.ts` deliberately ignores any `.svg`
+passed as an OG image.
 
 ## Phase 2 integration map
 

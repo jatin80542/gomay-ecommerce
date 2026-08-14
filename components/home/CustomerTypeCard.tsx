@@ -11,7 +11,7 @@ const lanes = [
     copy: "Household packs of upla, diyas, dhoop and pooja boxes. Order in minutes, delivered to your door.",
     cta: "Shop retail",
     href: "/shop",
-    image: "/images/lifestyle/packaging.svg",
+    image: "/images/gomay/story/packaging.jpg",
     scale: "₹100 – ₹1,000",
   },
   {
@@ -20,7 +20,7 @@ const lanes = [
     copy: "Branded gift boxes for employees, clients and events — your logo, your combination, delivered anywhere.",
     cta: "Corporate solutions",
     href: "/corporate-gifting",
-    image: "/images/lifestyle/corporate-gifting.svg",
+    image: "/images/gomay/lifestyle/corporate.jpg",
     scale: "50+ boxes",
   },
   {
@@ -29,7 +29,7 @@ const lanes = [
     copy: "Cartons, pallets and tonnes for distributors, retailers, temples, nurseries and event suppliers.",
     cta: "Request bulk pricing",
     href: "/bulk",
-    image: "/images/lifestyle/bulk-warehouse.svg",
+    image: "/images/gomay/lifestyle/warehouse-alt.jpg",
     scale: "500 pcs – 10 tonne",
   },
 ];
@@ -62,6 +62,7 @@ export function CustomerTypeCards() {
                     alt=""
                     fill
                     sizes="(max-width: 1024px) 100vw, 400px"
+                    quality={90}
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <span className="absolute bottom-3 left-3 rounded-xs bg-sand-50/95 px-2.5 py-1 font-mono text-[11px] text-mitti-700 backdrop-blur">

@@ -39,12 +39,13 @@ export function Hero() {
         </div>
 
         <div className="relative">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mitti-200 lg:aspect-[5/6]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-mitti-200">
             <Image
-              src="/images/lifestyle/hero.svg"
+              src="/images/gomay/banners/hero.jpg"
               alt="Morning at the gaushala, with gomay products drying in natural daylight"
               fill
               sizes="(max-width: 1024px) 100vw, 560px"
+              quality={90}
               priority
               className="object-cover"
             />

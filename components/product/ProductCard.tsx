@@ -34,22 +34,28 @@ export function ProductCard({ product, priority = false }: { product: Product; p
 
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-lg border border-mitti-200 bg-sand-50 transition duration-300 hover:border-mitti-300 hover:shadow-card">
-      <div className="relative aspect-[4/5] overflow-hidden bg-sand-100">
+      <div className="relative aspect-[4/3] overflow-hidden bg-sand-100">
         <Link href={`/products/${product.slug}`} className="block h-full w-full" tabIndex={-1} aria-hidden>
           <Image
             src={product.images[0]?.src ?? ""}
             alt={product.images[0]?.alt ?? product.name}
             fill
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            quality={90}
             priority={priority}
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
         </Link>
 
-        <div className="pointer-events-none absolute left-3 top-3 flex flex-wrap gap-1.5">
-          {product.badges.slice(0, 2).map((badge) => (
-            <Badge key={badge} kind={badge} />
-          ))}
+        {/* One badge only. Two wrapped to a second row and covered the product;
+            "made-in-india" is true of everything we sell, so it earns nothing on a card. */}
+        <div className="pointer-events-none absolute left-3 top-3 flex gap-1.5">
+          {product.badges
+            .filter((b) => b !== "made-in-india")
+            .slice(0, 1)
+            .map((badge) => (
+              <Badge key={badge} kind={badge} />
+            ))}
           {outOfStock ? (
             <span className="rounded-xs border border-mitti-800 bg-mitti-800 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-sand-100">
               Out of stock

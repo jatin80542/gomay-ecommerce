@@ -22,12 +22,13 @@ export function ProductGallery({ images, name }: { images: ProductImage[]; name:
         )}
         onClick={() => setZoomed((v) => !v)}
       >
-        <div className="relative aspect-square">
+        <div className="relative aspect-[4/3]">
           <Image
             src={current?.src ?? ""}
             alt={current?.alt ?? name}
             fill
             sizes="(max-width: 1024px) 100vw, 560px"
+            quality={90}
             priority
             className={cn("object-cover transition-transform duration-500", zoomed && "scale-[1.7]")}
           />
@@ -51,6 +52,7 @@ export function ProductGallery({ images, name }: { images: ProductImage[]; name:
               alt={image.alt}
               fill
               sizes="82vw"
+              quality={90}
               priority={index === 0}
               className="object-cover"
             />

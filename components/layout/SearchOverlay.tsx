@@ -126,6 +126,7 @@ export function SearchOverlay() {
                             alt=""
                             fill
                             sizes="48px"
+                            quality={90}
                             className="object-cover"
                           />
                         </span>

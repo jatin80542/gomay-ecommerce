@@ -7,7 +7,7 @@ export const categories: Category[] = [
     hindiName: "गोमय उपला",
     description:
       "Sun-dried gomay cakes for pooja, havan and ceremonial fires. Sold in household packs and in cartons for temples and event suppliers.",
-    image: "/images/categories/cow-dung-cakes.svg",
+    image: "/images/gomay/category/cow-dung-cakes.jpg",
     purposeBlurb: "Pooja • Havan • Holika Dahan",
   },
   {
@@ -16,7 +16,7 @@ export const categories: Category[] = [
     hindiName: "गोमय दीया",
     description:
       "Hand-shaped diyas in plain and decorated finishes, packed for daily lamps, festival evenings and gifting.",
-    image: "/images/categories/diyas.svg",
+    image: "/images/gomay/category/diyas.jpg",
     purposeBlurb: "Diwali • Daily rituals • Gifting",
   },
   {
@@ -25,7 +25,7 @@ export const categories: Category[] = [
     hindiName: "हवन कप",
     description:
       "Cup-shaped gomay bases, empty or filled with traditional resins, for quick havan and evening dhuni.",
-    image: "/images/categories/havan-cups.svg",
+    image: "/images/gomay/category/havan-cups.jpg",
     purposeBlurb: "Havan • Dhuni • Temples",
   },
   {
@@ -33,7 +33,7 @@ export const categories: Category[] = [
     name: "Dhoop",
     hindiName: "धूप",
     description: "Gomay-based dhoop sticks, batti and cones in natural and traditional fragrances.",
-    image: "/images/categories/dhoop.svg",
+    image: "/images/gomay/category/dhoop.jpg",
     purposeBlurb: "Daily rituals • Aarti",
   },
   {
@@ -42,7 +42,7 @@ export const categories: Category[] = [
     hindiName: "हवन लकड़ी",
     description:
       "Larger ceremonial fuel — gomay sticks and logs sold by piece, by kilo and by the tonne for institutional havans.",
-    image: "/images/categories/havan-sticks.svg",
+    image: "/images/gomay/category/havan-sticks.jpg",
     purposeBlurb: "Havan kund • Yagya • Institutions",
   },
   {
@@ -51,7 +51,7 @@ export const categories: Category[] = [
     hindiName: "गोबर खाद",
     description:
       "Dried cow dung powder and cured manure for balcony pots, nurseries and field application.",
-    image: "/images/categories/manure.svg",
+    image: "/images/gomay/category/manure.jpg",
     purposeBlurb: "Gardening • Nursery • Farming",
   },
   {
@@ -59,7 +59,7 @@ export const categories: Category[] = [
     name: "Festive & Decor",
     hindiName: "त्योहार",
     description: "Seasonal gomay pieces — decorated diyas, idols and wall decor for festivals and housewarmings.",
-    image: "/images/categories/festive.svg",
+    image: "/images/gomay/category/festive.jpg",
     purposeBlurb: "Diwali • Navratri • Griha Pravesh",
   },
   {
@@ -67,7 +67,7 @@ export const categories: Category[] = [
     name: "Combo & Gift Boxes",
     hindiName: "पूजा बॉक्स",
     description: "Ready-assembled boxes for daily pooja, full havan, festivals, temples and corporate gifting.",
-    image: "/images/categories/combo-boxes.svg",
+    image: "/images/gomay/category/combo-boxes.jpg",
     purposeBlurb: "Gifting • Temples • Festivals",
   },
 ];
@@ -81,7 +81,7 @@ export const collections: Collection[] = [
     name: "Pooja & Havan",
     hindiName: "पूजा एवं हवन",
     description: "Everything the ritual needs — cakes, cups, dhoop and lakdi, in household and temple quantities.",
-    image: "/images/lifestyle/craft-hands.svg",
+    image: "/images/gomay/story/craft-hands.jpg",
     categories: ["cow-dung-cakes", "havan-cups", "dhoop", "havan-sticks"],
   },
   {
@@ -89,7 +89,7 @@ export const collections: Collection[] = [
     name: "Gardening & Farming",
     hindiName: "बागवानी",
     description: "Cow dung powder and cured manure, from a 1 KG balcony pack to field quantities.",
-    image: "/images/lifestyle/drying-yard.svg",
+    image: "/images/gomay/story/drying-yard.jpg",
     categories: ["manure"],
   },
   {
@@ -97,28 +97,28 @@ export const collections: Collection[] = [
     name: "Diwali Collection",
     hindiName: "दीपावली",
     description: "Diyas, festive boxes and decor prepared for the Diwali season.",
-    image: "/images/lifestyle/story.svg",
+    image: "/images/gomay/story/story.jpg",
     categories: ["diyas", "festive", "combo-boxes"],
   },
   {
     slug: "festive",
     name: "Festive",
     description: "Seasonal products across Diwali, Navratri, Holi, weddings and housewarmings.",
-    image: "/images/categories/festive.svg",
+    image: "/images/gomay/category/festive.jpg",
     categories: ["diyas", "festive", "combo-boxes"],
   },
   {
     slug: "corporate-gifting",
     name: "Corporate Gifting",
     description: "Boxes built to be customised — company logo, sleeve, message card and product mix.",
-    image: "/images/lifestyle/corporate-gifting.svg",
+    image: "/images/gomay/lifestyle/corporate.jpg",
     categories: ["combo-boxes", "diyas", "festive"],
   },
   {
     slug: "bestsellers",
     name: "Best Sellers",
     description: "The packs households and temples reorder most often.",
-    image: "/images/lifestyle/packaging.svg",
+    image: "/images/gomay/story/packaging.jpg",
     categories: ["cow-dung-cakes", "diyas", "havan-cups"],
   },
 ];

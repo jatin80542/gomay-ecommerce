@@ -42,12 +42,13 @@ function QuickViewBody({ slug }: { slug: string }) {
 
   return (
     <div className="grid gap-6 sm:grid-cols-2">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-mitti-200 bg-sand-100">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-mitti-200 bg-sand-100">
         <Image
           src={product.images[0]?.src ?? ""}
           alt={product.images[0]?.alt ?? product.name}
           fill
           sizes="(max-width: 640px) 100vw, 320px"
+          quality={90}
           className="object-cover"
         />
       </div>

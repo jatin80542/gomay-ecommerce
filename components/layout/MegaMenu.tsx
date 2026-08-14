@@ -31,10 +31,11 @@ export function MegaMenu({ onNavigate }: { onNavigate: () => void }) {
         <div className="overflow-hidden rounded-lg border border-mitti-200">
           <div className="relative aspect-[16/10]">
             <Image
-              src="/images/lifestyle/corporate-gifting.svg"
+              src="/images/gomay/lifestyle/corporate.jpg"
               alt="Boxed gomay gifts with custom sleeves"
               fill
               sizes="(max-width: 1024px) 100vw, 320px"
+              quality={90}
               className="object-cover"
             />
           </div>

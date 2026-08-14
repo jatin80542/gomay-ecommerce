@@ -94,10 +94,11 @@ export default function CorporateGiftingPage() {
 
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-sand-200/15">
             <Image
-              src="/images/lifestyle/corporate-gifting.svg"
+              src="/images/gomay/lifestyle/corporate.jpg"
               alt="Gomay corporate gift boxes with printed sleeves and message cards"
               fill
               sizes="(max-width: 1024px) 100vw, 520px"
+              quality={90}
               priority
               className="object-cover"
             />

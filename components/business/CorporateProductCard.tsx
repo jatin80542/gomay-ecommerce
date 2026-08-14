@@ -16,6 +16,7 @@ export function CorporateProductCard({ product }: { product: Product }) {
           alt={product.images[0]?.alt ?? product.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={90}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
         <span className="absolute left-3 top-3 rounded-xs bg-mitti-800 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-sand-100">

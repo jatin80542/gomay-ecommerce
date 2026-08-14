@@ -62,10 +62,11 @@ export function BrandPhilosophy() {
       <div className="shell grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mitti-200">
           <Image
-            src="/images/lifestyle/craft-hands.svg"
+            src="/images/gomay/story/craft-hands.jpg"
             alt="Gomay cakes being shaped by hand"
             fill
             sizes="(max-width: 1024px) 100vw, 520px"
+            quality={90}
             className="object-cover"
           />
         </div>
@@ -199,10 +200,11 @@ export function CorporateBanner() {
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-sand-200/15">
           <Image
-            src="/images/lifestyle/corporate-gifting.svg"
+            src="/images/gomay/lifestyle/corporate.jpg"
             alt="Corporate gomay gift boxes with printed sleeves"
             fill
             sizes="(max-width: 1024px) 100vw, 520px"
+            quality={90}
             className="object-cover"
           />
         </div>
@@ -368,10 +370,11 @@ export function SourcingStory() {
         </div>
         <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-mitti-200">
           <Image
-            src="/images/lifestyle/sourcing.svg"
+            src="/images/gomay/story/sourcing.jpg"
             alt="Map-like illustration of sourcing across India"
             fill
             sizes="(max-width: 1024px) 100vw, 460px"
+            quality={90}
             className="object-cover"
           />
         </div>

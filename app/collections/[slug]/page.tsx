@@ -61,6 +61,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
               alt=""
               fill
               sizes="(max-width: 1024px) 100vw, 460px"
+              quality={90}
               className="object-cover"
               priority
             />
