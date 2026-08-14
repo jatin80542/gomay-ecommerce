@@ -13,7 +13,9 @@ export function ProductGallery({ images, name }: { images: ProductImage[]; name:
   const current = images[active] ?? images[0];
 
   return (
-    <div className="lg:sticky lg:top-28">
+    // min-w-0 is load-bearing: as a grid item this would otherwise default to
+    // min-width:auto and be sized by the 82vw slides below, overflowing the page.
+    <div className="min-w-0 lg:sticky lg:top-28">
       {/* Desktop: single frame with thumbnails. Mobile: swipeable rail. */}
       <div
         className={cn(
@@ -40,7 +42,7 @@ export function ProductGallery({ images, name }: { images: ProductImage[]; name:
 
       <div
         ref={railRef}
-        className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 lg:hidden"
+        className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 sm:-mx-6 sm:px-6 lg:hidden"
       >
         {images.map((image, index) => (
           <div
